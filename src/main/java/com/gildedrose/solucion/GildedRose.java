@@ -35,4 +35,23 @@ public class GildedRose {
             qualityUpdater.updateQuality(items[i]);
         }
     }
+    
+    public void updateQualityForNewCategory(Item[] items) {
+        for (int i = 0; i < items.length; i++) {
+            if (items[i].name.equals("New Category Item")) {
+                // Actualizar la calidad del item de la nueva categoría
+                if (items[i].quality > 0) {
+                    items[i].quality = items[i].quality - 1;
+                }
+
+                // Actualizar el sellIn del item de la nueva categoría
+                items[i].sellIn = items[i].sellIn - 1;
+
+                // Si sellIn es negativo, la calidad disminuye al doble de la velocidad
+                if (items[i].sellIn < 0 && items[i].quality > 0) {
+                    items[i].quality = items[i].quality - 1;
+                }
+            }
+        }
+    }
 }
